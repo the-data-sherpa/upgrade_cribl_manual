@@ -83,7 +83,8 @@ def untar_cribl():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Update Cribl installation")
-    parser.add_argument("-h", "--help", action="store_true", help="Show this help message and exit")  # Corrected here
+    parser.add_argument("-h", "--help", action="store_true", help="Show this help message and exit")  # Defined only once
+
     args = parser.parse_args()
 
     if args.help:
