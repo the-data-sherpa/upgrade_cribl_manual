@@ -73,7 +73,7 @@ def cribl_version():
 def archive_cribl():
     if ARCHIVE_LOCATION:
         try:
-            subprocess.run(["tar", "czvf", os.path.join(ARCHIVE_LOCATION, "cribl_backup.tar.gz"), "."], cwd=CRIBL_HOME)
+            subprocess.run(["tar", "czvf", os.path.join(ARCHIVE_LOCATION, "cribl_backup.tar.gz"), "."], cwd=os.path.join(CRIBL_HOME, "cribl"),)
             log_info("Cribl archived successfully")
         except subprocess.CalledProcessError as e:
             log_error("Failed to archive Cribl: {}".format(e))
