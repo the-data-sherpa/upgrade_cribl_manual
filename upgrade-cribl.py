@@ -11,7 +11,7 @@ with open(".env") as f:
         os.environ[key] = value
 
 TAR_FILE = os.environ.get("TAR_FILE")
-CRIBL_HOME = os.environ.get("CRIBL_HOME", "/opt/cribl/")
+CRIBL_HOME = os.environ.get("CRIBL_HOME", "/opt/")
 IS_SERVICE = bool(os.environ.get("IS_SERVICE", False))
 ARCHIVE_LOCATION = os.environ.get("ARCHIVE_LOCATION")
 
@@ -42,7 +42,7 @@ def stop_cribl():
             else:
                 subprocess.run(["service", "cribl", "stop"])  # Example for other systems
         else:
-            subprocess.run([os.path.join(CRIBL_HOME, "bin", "cribl"), "stop"])
+            subprocess.run([os.path.join(CRIBL_HOME, "cribl", "bin", "cribl"), "stop"])
         log_info("Cribl stopped successfully")
     except subprocess.CalledProcessError as e:
         log_error("Failed to stop Cribl: {}".format(e))
@@ -57,7 +57,7 @@ def start_cribl():
             else:
                 subprocess.run(["service", "cribl", "start"])  # Example for other systems
         else:
-            subprocess.run([os.path.join(CRIBL_HOME, "bin", "cribl"), "start"])
+            subprocess.run([os.path.join(CRIBL_HOME, "cribl", "bin", "cribl"), "start"])
         log_info("Cribl started successfully")
     except subprocess.CalledProcessError as e:
         log_error("Failed to start Cribl: {}".format(e))
@@ -90,7 +90,7 @@ if __name__ == "__main__":
         print("")
         print("Required .env variables:")
         print("- TAR_FILE: Path to the Cribl tar file for update")
-        print("- CRIBL_HOME (optional, defaults to /opt/cribl/): Path to the Cribl installation directory")
+        print("- CRIBL_HOME (optional, defaults to /opt/): Path to the Cribl installation directory")
         print("- IS_SERVICE (optional, defaults to false): Boolean indicating if Cribl is running as a service")
         print("- ARCHIVE_LOCATION (optional): Path to archive the existing Cribl installation before update")
         print("")
