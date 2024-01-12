@@ -63,6 +63,13 @@ def start_cribl():
         log_error("Failed to start Cribl: {}".format(e))
         raise
 
+def cribl_version():
+    try:
+        subprocess.run([os.path.join(CRIBL_HOME, "cribl", "bin", "cribl"), "status"])
+    except subprocess.CalledProcessError as e:
+        log_error("Failed to retrieve Cribl Version {}".format(e))
+        raise
+
 def archive_cribl():
     if ARCHIVE_LOCATION:
         try:
@@ -105,6 +112,7 @@ if __name__ == "__main__":
         archive_cribl()
         untar_cribl()
         start_cribl()
+        cribl_version()
         log_info("Cribl update completed successfully")
     except Exception as e:
         log_error("Cribl update failed: {}".format(e))
