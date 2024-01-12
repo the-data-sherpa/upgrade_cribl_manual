@@ -1,4 +1,4 @@
-import argparse
+import sys
 import distro
 import logging
 import os
@@ -82,12 +82,10 @@ def untar_cribl():
         raise
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Update Cribl installation")
-    parser.add_argument("-h", "--help", action="store_true", help="Show this help message and exit")  # Defined only once
-
-    args = parser.parse_args()
-
-    if args.help:
+    if len(sys.argv) > 1 and sys.argv[1] in ["-h", "--help"]:
+        print("Usage: python cribl_update.py")
+        print("")
+        print("Required .env variables:")
         print("Usage: python cribl_update.py")
         print("")
         print("Required .env variables:")
@@ -96,7 +94,8 @@ if __name__ == "__main__":
         print("- IS_SERVICE (optional, defaults to false): Boolean indicating if Cribl is running as a service")
         print("- ARCHIVE_LOCATION (optional): Path to archive the existing Cribl installation before update")
         print("")
-        exit()
+        print("")
+        sys.exit()
 
     log_info("Starting Cribl update process")
     try:
