@@ -30,7 +30,7 @@ def log_error(message):
 
 
 def validate_cribl_installation():
-    if not os.path.exists(os.path.join(CRIBL_HOME, "bin", "cribl")):
+    if not os.path.exists(os.path.join(CRIBL_HOME, "cribl", "bin", "cribl")):
         log_error("Cribl installation not found at CRIBL_HOME")
         raise ValueError("Cribl installation not found at CRIBL_HOME")
 
